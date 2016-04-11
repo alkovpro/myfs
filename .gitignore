@@ -1,0 +1,7 @@
+*.pyc
+*.PYC
+*.idea
+*.DS_Store
+instance/
+_site/
+.idea/
