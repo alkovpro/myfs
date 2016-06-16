@@ -9,30 +9,29 @@
 """
 
 from docopt import docopt
-from model import fileNode,folderNode,myfs
+from model import MyFS
 
-args=docopt(__doc__, version='0.0.1')
+args = docopt(__doc__, version='0.0.1')
 
 if type(args) is str:
     print(args)
     exit()
 
 if args['mkdir']:
-    myfs.mkdir(args['<path>'])
+    MyFS.mkdir(args['<path>'])
 
 elif args['touch']:
-    myfs.touch(args['<path>'])
+    MyFS.touch(args['<path>'])
 
 elif args['list']:
-    for fileitem in myfs.list(args['<path>']):
-        print (u' %s ' if fileitem.nodetype=='File' else u'[%s]') % fileitem.name
+    for fileitem in MyFS.list(args['<path>']):
+        print (u' %s ' if fileitem.nodetype == 'File' else u'[%s]') % fileitem.name
 
 elif args['remove']:
-    myfs.remove(args['<path>'], args['force'])
+    MyFS.remove(args['<path>'], args['force'])
 
 elif args['info']:
-    info = myfs.info(args['<path>'])
+    info = MyFS.info(args['<path>'])
     print ("Info on '%s':" % args['<path>'])
-    for k,v in info.iteritems():
+    for k, v in info.iteritems():
         print (u'  %10s : %s' % (k, v))
-
